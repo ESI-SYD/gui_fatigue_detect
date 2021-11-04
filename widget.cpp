@@ -258,7 +258,7 @@ void Widget::update_window()
                 {
                     nod_total += 1;
                     nod_cnt = 0;
-                    if (nod_total > 10)
+                    if (nod_total > ui->headspinBox->text().toUInt())
                     {
                         ui->StatusTextBrowser->append("<font color='red'>" + QString("检测到多次低头行为，您已疲劳，请休息!") + "</font> ");
 
@@ -327,7 +327,7 @@ void Widget::update_window()
             {
                 open_mou_cnt = 0;
                 real_yawn++;
-                if (real_yawn > 8)
+                if (real_yawn > ui->yawnspinBox->text().toUInt())//ui哈欠
                 {
                     ui->StatusTextBrowser->append("<font color='red'>" + QString("检测到多次哈欠行为，您已疲劳，请休息！") + "</font> ");
                     real_yawn = 0;
@@ -348,7 +348,7 @@ void Widget::update_window()
         {
             blink_cnt = 0;
             eye_close_duration++;
-            if (eye_close_duration > 8)
+            if (eye_close_duration > ui->eyespinBox->text().toUInt())
             {
                 ui->StatusTextBrowser->append("<font color='red'>" + QString("检测到多次闭眼行为，您已疲劳，请休息！") + "</font> ");
                 eye_close_duration = 0;
@@ -379,4 +379,7 @@ void Widget::show_frame(Mat &image)
     QImage qt_image((const unsigned char*) (image.data), image.cols,image.rows, QImage::Format_RGB888);
     ui->label_camera->setPixmap(QPixmap::fromImage(qt_image));
 }
+
+
+
 
