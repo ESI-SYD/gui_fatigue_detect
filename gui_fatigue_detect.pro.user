@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.15.0, 2021-10-31T21:52:36. -->
+<!-- Written by QtCreator 4.15.0, 2021-11-05T00:26:51. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -294,13 +294,15 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:E:/gui_fatigue_detect/gui_fatigue_detect.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/gui_fatigue_detect/gui_fatigue_detect.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">gui_fatigue_detect2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:E:/Fatigue/gui_fatigue_detect/gui_fatigue_detect.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/Fatigue/gui_fatigue_detect/gui_fatigue_detect.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/repos/build-facial_landmarks_dlib_opencv_Qt_GUI-Desktop_Qt_5_12_11_MinGW_64_bit-Release</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
