@@ -60,8 +60,6 @@ void Widget::on_pushButton_close_camera_clicked()
 }
 
 
-
-/*加入算法，有优化空间。。*/
 void Widget::update_window()
 {
     //# 世界坐标系(UVW)：填写3D参考点--->14点
@@ -115,6 +113,7 @@ void Widget::update_window()
     double fps;
     double t = 0;
     cap >> frame;
+    cv::resize(frame,frame,Size(256,192),0,0,cv::INTER_LINEAR);
     t = (double)getTickCount();
     cv_image<bgr_pixel> dlib_image(frame);
     std::vector<dlib::rectangle> faces = face_detector(dlib_image);
@@ -122,6 +121,7 @@ void Widget::update_window()
     int faceNumber = faces.size();   //容器容量即人脸个数
     float MAR_mouth=0;
     float EAR_eyes=0;
+
 
     /**********未检测到人脸**********/
     if (faceNumber == 0)
@@ -155,7 +155,7 @@ void Widget::update_window()
             {
                 for (int i = 0; i < 26; i++)
                 {
-                    cv::putText(frame, to_string(i), cvPoint(shapes[0].part(i).x(), shapes[0].part(i).y()), cv::FONT_HERSHEY_PLAIN, 0.8, cv::Scalar(0, 255, 0));
+                    cv::putText(frame, to_string(i), cvPoint(shapes[0].part(i).x(), shapes[0].part(i).y()), cv::FONT_HERSHEY_PLAIN, 0.3, cv::Scalar(0, 255, 0));
                 }
             }
 
