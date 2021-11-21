@@ -1,7 +1,7 @@
 /*
 * @File_name:  gui_fatigue_detect
 * @Description: gui_fatigue_detect
-* @Date:   2021-11-05 00:45:30
+* @Date:   2021-11-21 14:40:32
 * @Author: ESI_SYD@Tongji
 */
 
@@ -18,6 +18,7 @@ Widget::Widget(QWidget *parent) :
     ui->setupUi(this);
 
     timer = new QTimer(this);
+    ui->StatusTextBrowser->setStyleSheet("background-color: black;");
 }
 
 Widget::~Widget()
@@ -31,11 +32,11 @@ void Widget::on_pushButton_open_camera_clicked()
 
     if(!cap.isOpened())
     {
-        ui->StatusTextBrowser->append("相机未打开!");
+        ui->StatusTextBrowser->append("<font color='red'>" + QString("相机未打开!") + "</font> ");
     }
     else
     {
-        ui->StatusTextBrowser->append("相机已打开");
+        ui->StatusTextBrowser->append("<font color='green'>" + QString("相机已打开!") + "</font> ");
 
         connect(timer, SIGNAL(timeout()), this, SLOT(update_window()));
         timer->start(20);
@@ -55,8 +56,7 @@ void Widget::on_pushButton_close_camera_clicked()
     Mat image = Mat::zeros(frame.size(),CV_8UC3);//image置零
 
     show_frame(image);//显示图片
-
-    ui->StatusTextBrowser->append("相机已关闭");
+    ui->StatusTextBrowser->append("<font color='red'>" + QString("相机已关闭!") + "</font> ");
 }
 
 
@@ -127,12 +127,13 @@ void Widget::update_window()
     if (faceNumber == 0)
     {
         if (detect_no_face_duration != 100)
-        {
-            ui->StatusTextBrowser->append("未检测到人脸!"+QString::number(detect_no_face_duration++));
+        {          
+            ui->StatusTextBrowser->append("<font color='red'>" + QString("未检测到人脸!!")+QString::number(detect_no_face_duration++) + "</font> ");
         }
         else
         {
-            ui->StatusTextBrowser->append("较长时间未检测到人脸，判定疲劳！");
+            ui->StatusTextBrowser->append("<font color='red'>" + QString("较长时间未检测到人脸，判定疲劳！") + "</font> ");
+
             detect_no_face_duration = 1;
         }
     }
@@ -267,7 +268,8 @@ void Widget::update_window()
                 }
             }
 
-            ui->StatusTextBrowser->append("低头次数："+QString::number(nod_total));
+            ui->StatusTextBrowser->append("<font color='green'>" + QString("低头次数：") +QString::number(nod_total)+ "</font> ");
+
             image_pts.clear();
 
             /**********低头检测(辅助)**********/
@@ -297,8 +299,8 @@ void Widget::update_window()
                 blink_EAR_after = 0.0;
             }
 
-            ui->StatusTextBrowser->append("当前闭眼过程眨眼计数："+QString::number(blink_cnt));
-            ui->StatusTextBrowser->append("当前哈欠过程张嘴计数："+QString::number(open_mou_cnt));
+            ui->StatusTextBrowser->append("<font color='green'>" + QString("当前闭眼过程眨眼计数：") +QString::number(blink_cnt)+ "</font> ");
+            ui->StatusTextBrowser->append("<font color='green'>" + QString("当前哈欠过程张嘴计数：") +QString::number(open_mou_cnt)+ "</font> ");
         }
 
     }
@@ -320,7 +322,7 @@ void Widget::update_window()
     double consumeTime = (double)(finish - start);
 
     ///**********哈欠行为警告**********/
-    if ((open_mou_cnt / consumeTime) > 60)//张嘴频率大于60次/秒视为一次哈欠，数字待考证
+    if ((open_mou_cnt / consumeTime) > 60)
     {
 
             if (MAR_mouth < MAR_THRESH)//闭嘴时刻
@@ -336,13 +338,14 @@ void Widget::update_window()
             else
             {
                 open_mou_cnt++;
-                ui->StatusTextBrowser->append("检测到哈欠行为，当前哈欠次数："+QString::number(real_yawn));
+                ui->StatusTextBrowser->append("<font color='red'>" + QString("检测到哈欠行为，当前哈欠次数：") +QString::number(real_yawn)+ "</font> ");
+
             }
     }
     /**********哈欠行为警告**********/
 
     /**********闭眼行为警告**********/
-    if ((blink_cnt/ consumeTime) >60)//眨眼频率大于次60/秒视为一次闭眼过程，数字待考证
+    if ((blink_cnt/ consumeTime) >60)
     {
         if (EAR_eyes > 0.18)//睁眼时刻
         {
@@ -358,8 +361,8 @@ void Widget::update_window()
         {
             blink_cnt++;
             if (blink_cnt > 15)
-            {
-                ui->StatusTextBrowser->append("检测到闭眼行为，当前闭眼次数："+QString::number(eye_close_duration));
+            {   
+                ui->StatusTextBrowser->append("<font color='red'>" + QString("检测到闭眼行为，当前闭眼次数：") +QString::number(eye_close_duration)+ "</font> ");
             }
         }
     }

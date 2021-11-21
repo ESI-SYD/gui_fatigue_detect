@@ -54,7 +54,6 @@ else:unix: LIBS += -L$$PWD/../../../DFD/CV/opencv/build/x64/vc15/lib/ -lopencv_w
 INCLUDEPATH += $$PWD/../../../DFD/CV/opencv/build/include
 DEPENDPATH += $$PWD/../../../DFD/CV/opencv/build/include
 
-RESOURCES += \
-    res.qrc
+RESOURCES +=
 
 
