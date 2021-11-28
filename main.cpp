@@ -14,6 +14,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     Widget w;
     w.setWindowTitle("驾驶疲劳检测运行窗口");
+    w.setFixedHeight(600);
+    w.setFixedWidth(700);
     w.show();
     return a.exec();
 }
