@@ -1,5 +1,5 @@
 /*
-* @File_name:  gui_fatigue_detect
+* @File_name:  main.cpp
 * @Description: gui_fatigue_detect
 * @Date:   2021-11-21 14:40:32
 * @Author: ESI_SYD@Tongji
@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Widget w;
-    w.setWindowTitle("驾驶疲劳检测运行窗口");
+
     w.setFixedHeight(600);
     w.setFixedWidth(700);
     w.show();
